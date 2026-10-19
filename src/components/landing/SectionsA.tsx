@@ -149,7 +149,7 @@ export function ProductTabs() {
     setActive(n);
     refs.current[n]?.focus();
   };
-  const t = TABS[active];
+  const t = TABS[active]!;
   return (
     <Section id="product" labelledBy="product-title">
       <SectionHeader id="product-title" eyebrow="The product" title={<>A workspace built around <Serif>the people</Serif> you serve.</>} />
@@ -288,7 +288,7 @@ export function Features() {
             <div className="mt-6 grid gap-2 sm:grid-cols-3">
               {[["Amara O.", "7 visits"], ["Daniel K.", "3 visits"], ["Grace M.", "1 visit"]].map(([n, v]) => (
                 <div key={n} className="flex items-center gap-2.5 rounded-xl border border-border p-3">
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-cobalt-soft text-[11px] font-semibold text-primary">{n.slice(0, 2)}</span>
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-cobalt-soft text-[11px] font-semibold text-primary">{(n ?? "").slice(0, 2)}</span>
                   <div><p className="text-[13px] font-medium">{n}</p><p className="text-[11px] text-muted-foreground">{v}</p></div>
                 </div>
               ))}
