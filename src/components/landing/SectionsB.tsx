@@ -18,7 +18,7 @@ const INDUSTRIES = [
 
 export function UseCases() {
   const [a, setA] = useState(0);
-  const ind = INDUSTRIES[a];
+  const ind = INDUSTRIES[a]!;
   return (
     <Section id="use-cases" labelledBy="uc-title">
       <SectionHeader id="uc-title" eyebrow="Use cases" title={<>One product, <Serif>configured</Serif> for your trade.</>} body="The core stays the same. Services, questions and follow-ups adapt to how you work." />
@@ -75,7 +75,7 @@ const STAGES = [
 
 export function Journey() {
   const [s, setS] = useState(0);
-  const st = STAGES[s];
+  const st = STAGES[s]!;
   return (
     <Section className="border-y border-border bg-surface" labelledBy="journey-title">
       <SectionHeader id="journey-title" eyebrow="Customer journey" title={<>Every step, <Serif>honestly</Serif> measured.</>} body="Select a stage to see what ClientLoop records—and what it doesn't claim to know." align="center" />
