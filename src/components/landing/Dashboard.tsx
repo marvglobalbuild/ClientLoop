@@ -56,7 +56,7 @@ export function Dashboard() {
                 aria-expanded={menu}
                 className="flex items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1.5 text-[13px] font-medium shadow-soft hover:bg-secondary"
               >
-                <span className="grid h-5 w-5 place-items-center rounded bg-teal-soft text-[10px] font-semibold text-teal">{BUSINESSES[biz][0]}</span>
+                <span className="grid h-5 w-5 place-items-center rounded bg-teal-soft text-[10px] font-semibold text-teal">{BUSINESSES[biz]?.[0]}</span>
                 {BUSINESSES[biz]}
                 <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
               </button>
