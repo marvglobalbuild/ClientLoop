@@ -59,7 +59,7 @@ export function Reveal({
       ref={ref}
       data-visible={visible}
       style={{ transitionDelay: `${delay}ms` }}
-      className={cn("reveal", className)}
+      className={cn("reveal min-w-0", className)}
     >
       {children}
     </Tag>
@@ -82,7 +82,7 @@ export function SectionHeader({
   return (
     <Reveal className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       <p className="eyebrow">{eyebrow}</p>
-      <h2 id={id} className="display mt-4 text-[34px] sm:text-5xl text-balance">
+      <h2 id={id} className="display mt-4 text-[32px] sm:text-4xl lg:text-5xl text-balance">
         {title}
       </h2>
       {body && <p className="mt-5 text-[17px] leading-relaxed text-muted-foreground text-pretty">{body}</p>}
@@ -109,13 +109,13 @@ export function SampleTag({ className }: { className?: string }) {
 }
 
 export function Panel({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("rounded-2xl border border-border bg-card shadow-soft", className)}>{children}</div>;
+  return <div className={cn("min-w-0 rounded-2xl border border-border bg-card shadow-soft", className)}>{children}</div>;
 }
 
 export function Section({ id, children, className, labelledBy }: { id?: string; children: ReactNode; className?: string; labelledBy?: string }) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("px-5 py-24 sm:px-8 sm:py-32", className)}>
-      <div className="mx-auto max-w-6xl">{children}</div>
+    <section id={id} aria-labelledby={labelledBy} className={cn("px-5 py-16 sm:px-8 sm:py-20 lg:py-24", className)}>
+      <div className="page-container">{children}</div>
     </section>
   );
 }
