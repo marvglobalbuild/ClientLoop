@@ -36,8 +36,8 @@ export function Nav() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all",
-        scrolled ? "border-b border-border bg-background/80 backdrop-blur-xl" : "border-b border-transparent",
+        "sticky top-0 z-50 transition-colors",
+        scrolled || open ? "border-b border-border bg-background" : "border-b border-transparent",
       )}
     >
       <nav className="page-container grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:flex xl:justify-between px-5 sm:px-8" aria-label="Main">
@@ -68,7 +68,7 @@ export function Nav() {
         </Button>
       </nav>
       {open && (
-        <div id="mobile-menu" className="animate-fade fixed inset-x-0 top-16 bottom-0 z-40 bg-background px-5 pt-6 xl:hidden">
+        <div id="mobile-menu" className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-background px-5 pt-6 pb-6 xl:hidden">
           <ul className="divide-y divide-border border-y border-border">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
