@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 /* ---------------- HERO ---------------- */
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-5 pt-14 pb-20 sm:px-8 sm:pt-24">
+    <section id="top" className="relative overflow-hidden px-5 pt-9 pb-14 sm:px-8 sm:pt-12 lg:pt-14 lg:pb-16">
       <div className="bg-hero pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl">
-        <Reveal className="mx-auto max-w-3xl text-center">
+      <div className="relative page-container">
+        <Reveal className="mx-auto max-w-4xl text-center">
           <p className="eyebrow">Customer relationships, made clearer</p>
-          <h1 className="display mt-6 text-[42px] text-balance sm:text-6xl lg:text-[76px]">
+          <h1 className="display mt-6 text-[36px] text-balance sm:text-5xl lg:text-[64px] xl:text-[72px]">
             Turn every customer interaction into your <Serif>next opportunity.</Serif>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted-foreground text-pretty sm:text-lg">
@@ -26,7 +26,7 @@ export function Hero() {
           </div>
           <p className="mt-6 text-[13px] text-muted-foreground">Built for service businesses of every size.</p>
         </Reveal>
-        <Reveal delay={150} className="mx-auto mt-16 max-w-5xl">
+        <Reveal delay={150} className="mx-auto mt-10 max-w-6xl lg:mt-12">
           <Dashboard />
           <p className="mt-4 text-center text-[12px] text-muted-foreground">Interactive preview with illustrative sample data — try the business selector and date range.</p>
         </Reveal>
@@ -66,7 +66,7 @@ const TABS = [
 function TabVisual({ id }: { id: string }) {
   if (id === "overview")
     return (
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
         {[["Visits this week", "214", "bg-primary", 72], ["Returning rate", "58%", "bg-teal", 58], ["Feedback completed", "41%", "bg-chart-3", 41], ["Follow-ups sent", "36", "bg-amber", 36]].map(([k, v, c, p]) => (
           <div key={k as string} className="rounded-xl border border-border bg-card p-4">
             <p className="text-xs text-muted-foreground">{k}</p>
@@ -78,14 +78,14 @@ function TabVisual({ id }: { id: string }) {
     );
   if (id === "insights")
     return (
-      <div className="rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-cobalt-soft font-semibold text-primary">AO</span>
+      <div className="min-w-0 rounded-xl border border-border bg-card p-4">
+        <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto]">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cobalt-soft font-semibold text-primary">AO</span>
           <div className="min-w-0">
             <p className="font-medium">Amara Okafor</p>
             <p className="text-xs text-muted-foreground">Customer since Mar · found via Referral</p>
           </div>
-          <span className="ml-auto rounded-md bg-teal-soft px-2 py-0.5 text-[11px] font-medium text-teal">Returning</span>
+          <span className="col-start-2 justify-self-start rounded-md bg-teal-soft sm:col-start-auto px-2 py-0.5 text-[11px] font-medium text-teal">Returning</span>
         </div>
         <ol className="mt-5 space-y-3 border-l border-border pl-4">
           {[["Oct 12", "Signature cut", "Rated 5/5"], ["Sep 03", "Colour & tone", "Feedback completed"], ["Jul 21", "Consultation", "First visit"]].map(([d, s, n]) => (
@@ -100,11 +100,11 @@ function TabVisual({ id }: { id: string }) {
     );
   if (id === "feedback")
     return (
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="min-w-0 rounded-xl border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground">Questionnaire · After visit</p>
         <p className="mt-3 text-[14px] font-medium">How would you rate today's service?</p>
-        <div className="mt-2 flex gap-1.5">
-          {[1, 2, 3, 4, 5].map((n) => <span key={n} className={cn("grid h-9 w-9 place-items-center rounded-lg border text-sm", n === 4 ? "border-primary bg-primary text-primary-foreground" : "border-border")}>{n}</span>)}
+        <div className="mt-2 grid grid-cols-5 gap-1.5">
+          {[1, 2, 3, 4, 5].map((n) => <span key={n} className={cn("grid h-9 w-full max-w-9 place-items-center rounded-lg border text-sm", n === 4 ? "border-primary bg-primary text-primary-foreground" : "border-border")}>{n}</span>)}
         </div>
         <p className="mt-5 text-[14px] font-medium">How did you hear about us?</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -114,8 +114,8 @@ function TabVisual({ id }: { id: string }) {
       </div>
     );
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 rounded-xl border border-border bg-card p-4">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-[13px] font-medium">Follow-up queue</p>
         <span className="font-mono text-[11px] text-muted-foreground">3 ready · 1 skipped</span>
       </div>
@@ -127,7 +127,7 @@ function TabVisual({ id }: { id: string }) {
               <p className="text-[13px] font-medium">{n}</p>
               <p className="truncate text-xs text-muted-foreground">{m}</p>
             </div>
-            <span className={cn("rounded-md px-2 py-0.5 text-[11px]", ok ? "bg-teal-soft text-teal" : "bg-rose-soft text-rose")}>{s}</span>
+            <span className={cn("shrink-0 rounded-md px-2 py-0.5 text-[11px]", ok ? "bg-teal-soft text-teal" : "bg-rose-soft text-rose")}>{s}</span>
           </li>
         ))}
       </ul>
@@ -149,14 +149,15 @@ export function ProductTabs() {
     setActive(n);
     refs.current[n]?.focus();
   };
-  const t = TABS[active]!;
+  const t = TABS[active] ?? TABS[0];
+  if (!t) return null;
   return (
     <Section id="product" labelledBy="product-title">
       <SectionHeader id="product-title" eyebrow="The product" title={<>A workspace built around <Serif>the people</Serif> you serve.</>} />
       <Reveal className="mt-12">
-        <div role="tablist" aria-label="Product areas" onKeyDown={onKey} className="flex gap-1 overflow-x-auto rounded-full border border-border bg-card p-1 shadow-soft sm:inline-flex">
+        <div role="tablist" aria-label="Product areas" onKeyDown={onKey} className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-border bg-card p-1 shadow-soft sm:inline-flex">
           {TABS.map((tab, i) => (
-            <button
+            <Button variant="ghost"
               key={tab.id}
               ref={(el) => { refs.current[i] = el; }}
               role="tab"
@@ -165,14 +166,14 @@ export function ProductTabs() {
               aria-controls={`panel-${tab.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
-              className={cn("shrink-0 rounded-full px-4 py-2 text-[13.5px] transition-colors", i === active ? "bg-ink text-ink-foreground" : "text-muted-foreground hover:text-foreground")}
+              className={cn("h-auto shrink-0 rounded-full px-4 py-2 text-[13.5px] transition-colors", i === active ? "bg-ink text-ink-foreground" : "text-muted-foreground hover:text-foreground")}
             >
               {tab.label}
-            </button>
+            </Button>
           ))}
         </div>
-        <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} key={t.id} className="animate-fade mt-8 grid items-center gap-10 rounded-3xl border border-border bg-surface p-6 sm:p-10 lg:grid-cols-2">
-          <div>
+        <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} key={t.id} className="animate-fade mt-8 grid min-w-0 grid-cols-1 items-center gap-6 rounded-3xl border border-border bg-surface p-4 sm:p-8 lg:gap-10 lg:p-10 lg:grid-cols-2">
+          <div className="min-w-0">
             <h3 className="display text-3xl sm:text-4xl">{t.title}</h3>
             <p className="mt-4 text-muted-foreground leading-relaxed">{t.body}</p>
             <ul className="mt-6 space-y-2.5">
@@ -279,23 +280,23 @@ export function Features() {
   return (
     <Section className="bg-surface border-y border-border" labelledBy="features-title">
       <SectionHeader id="features-title" eyebrow="Features" title={<>Everything the loop needs, <Serif>nothing it doesn't.</Serif></>} />
-      <div className="mt-14 grid gap-4 md:grid-cols-6">
-        <Reveal className="md:col-span-4">
+      <div className="mt-14 grid gap-4 lg:grid-cols-6">
+        <Reveal className="lg:col-span-4">
           <Panel className="h-full p-6 sm:p-8">
             <UserRound className="h-5 w-5 text-primary" />
             <h3 className="mt-4 text-xl font-medium tracking-tight">Customer profiles & visit history</h3>
             <p className="mt-2 max-w-md text-muted-foreground">One record per customer, with every visit, service and note in order.</p>
-            <div className="mt-6 grid gap-2 sm:grid-cols-3">
+            <div className="mt-6 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
               {[["Amara O.", "7 visits"], ["Daniel K.", "3 visits"], ["Grace M.", "1 visit"]].map(([n, v]) => (
-                <div key={n} className="flex items-center gap-2.5 rounded-xl border border-border p-3">
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-cobalt-soft text-[11px] font-semibold text-primary">{(n ?? "").slice(0, 2)}</span>
-                  <div><p className="text-[13px] font-medium">{n}</p><p className="text-[11px] text-muted-foreground">{v}</p></div>
+                <div key={n} className="flex min-w-0 items-center gap-2.5 rounded-xl border border-border p-3">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-cobalt-soft text-[11px] font-semibold text-primary">{(n ?? "").slice(0, 2)}</span>
+                  <div className="min-w-0"><p className="truncate text-[13px] font-medium">{n}</p><p className="text-[11px] text-muted-foreground">{v}</p></div>
                 </div>
               ))}
             </div>
           </Panel>
         </Reveal>
-        <Reveal delay={80} className="md:col-span-2">
+        <Reveal delay={80} className="lg:col-span-2">
           <Panel className="h-full p-6 sm:p-8">
             <Repeat className="h-5 w-5 text-teal" />
             <h3 className="mt-4 text-xl font-medium tracking-tight">New vs returning</h3>
@@ -305,14 +306,14 @@ export function Features() {
             <div className="mt-4 flex h-2 overflow-hidden rounded-full"><div className="w-[58%] bg-teal" /><div className="flex-1 bg-teal-soft" /></div>
           </Panel>
         </Reveal>
-        <Reveal className="md:col-span-2">
+        <Reveal className="lg:col-span-2">
           <Panel className="h-full p-6 sm:p-8">
             <ClipboardList className="h-5 w-5 text-primary" />
             <h3 className="mt-4 text-xl font-medium tracking-tight">Configurable questionnaires</h3>
             <p className="mt-2 text-muted-foreground">Ratings, choices and open answers—your questions, your order.</p>
           </Panel>
         </Reveal>
-        <Reveal delay={80} className="md:col-span-4">
+        <Reveal delay={80} className="lg:col-span-4">
           <div className="bg-ink-gradient h-full rounded-2xl p-6 text-ink-foreground sm:p-8">
             <Phone className="h-5 w-5 text-teal" />
             <h3 className="mt-4 text-xl font-medium tracking-tight">WhatsApp follow-ups, with permission</h3>
@@ -328,7 +329,7 @@ export function Features() {
           { icon: MapPin, t: "Multi-staff, multi-location ready", b: "Foundations for teams and branches as you grow." },
           { icon: Download, t: "Dashboard & data export", b: "Your data stays yours. Export to CSV anytime." },
         ].map((f, i) => (
-          <Reveal key={f.t} delay={i * 60} className="md:col-span-3 lg:col-span-3">
+          <Reveal key={f.t} delay={i * 60} className="lg:col-span-3">
             <div className="flex h-full gap-4 rounded-2xl border border-border p-6">
               <f.icon className="h-5 w-5 shrink-0 text-primary" />
               <div><h3 className="font-medium tracking-tight">{f.t}</h3><p className="mt-1 text-[14px] text-muted-foreground">{f.b}</p></div>
