@@ -30,7 +30,7 @@ export function Nav() {
     document.body.style.overflow = open ? "hidden" : "";
     const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", esc);
-    return () => window.removeEventListener("keydown", esc);
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", esc); };
   }, [open]);
 
   return (
@@ -40,11 +40,11 @@ export function Nav() {
         scrolled ? "border-b border-border bg-background/80 backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8" aria-label="Main">
+      <nav className="page-container grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:flex xl:justify-between px-5 sm:px-8" aria-label="Main">
         <a href="#top" aria-label="ClientLoop home" className="shrink-0">
           <Wordmark />
         </a>
-        <ul className="hidden items-center gap-1 rounded-full border border-border bg-card/70 p-1 shadow-soft lg:flex">
+        <ul className="hidden items-center gap-1 rounded-full border border-border bg-card/70 p-1 shadow-soft xl:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
               <a href={l.href} className="rounded-full px-3.5 py-1.5 text-[13.5px] text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
@@ -53,22 +53,22 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <Button variant="ghost" size="pill" className="rounded-full" onClick={signInSoon}>Sign in</Button>
           <Button asChild variant="ink" size="pill"><a href="#early-access">Get early access</a></Button>
         </div>
-        <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card lg:hidden"
+        <Button variant="ghost" size="icon"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card xl:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((o) => !o)}
         >
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+        </Button>
       </nav>
       {open && (
-        <div id="mobile-menu" className="animate-fade fixed inset-x-0 top-16 bottom-0 z-40 bg-background px-5 pt-6 lg:hidden">
+        <div id="mobile-menu" className="animate-fade fixed inset-x-0 top-16 bottom-0 z-40 bg-background px-5 pt-6 xl:hidden">
           <ul className="divide-y divide-border border-y border-border">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>

@@ -18,28 +18,29 @@ const INDUSTRIES = [
 
 export function UseCases() {
   const [a, setA] = useState(0);
-  const ind = INDUSTRIES[a]!;
+  const ind = INDUSTRIES[a] ?? INDUSTRIES[0];
+  if (!ind) return null;
   return (
     <Section id="use-cases" labelledBy="uc-title">
       <SectionHeader id="uc-title" eyebrow="Use cases" title={<>One product, <Serif>configured</Serif> for your trade.</>} body="The core stays the same. Services, questions and follow-ups adapt to how you work." />
-      <Reveal className="mt-12 grid gap-6 lg:grid-cols-[280px_1fr]">
-        <div role="radiogroup" aria-label="Industry" className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
+      <Reveal className="mt-12 grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
+        <div role="radiogroup" aria-label="Industry" className="flex min-w-0 max-w-full gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
           {INDUSTRIES.map((x, i) => (
-            <button
+            <Button variant="ghost"
               key={x.id}
               role="radio"
               aria-checked={i === a}
               onClick={() => setA(i)}
-              className={cn("flex shrink-0 items-center gap-3 rounded-xl border px-4 py-3 text-left text-[14px] transition-all", i === a ? "border-primary bg-card shadow-soft" : "border-border hover:bg-card")}
+              className={cn("flex h-auto shrink-0 items-center justify-start gap-3 whitespace-normal rounded-xl border px-4 py-3 text-left text-[14px] transition-all", i === a ? "border-primary bg-card shadow-soft" : "border-border hover:bg-card")}
             >
-              <x.icon className={cn("h-4 w-4", i === a ? "text-primary" : "text-muted-foreground")} />
+              <x.icon className={cn("h-4 w-4 shrink-0", i === a ? "text-primary" : "text-muted-foreground")} />
               {x.label}
-            </button>
+            </Button>
           ))}
         </div>
-        <div key={ind.id} className="animate-fade grid gap-4 rounded-3xl border border-border bg-surface p-6 sm:grid-cols-2 sm:p-8">
-          <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-2">
-            <h3 className="display text-2xl sm:text-3xl">ClientLoop for {ind.label}</h3>
+        <div key={ind.id} className="animate-fade grid min-w-0 gap-4 rounded-3xl border border-border bg-surface p-6 sm:grid-cols-2 sm:p-8">
+          <div className="sm:col-span-2 grid min-w-0 gap-2">
+            <h3 className="display min-w-0 text-2xl sm:text-3xl">ClientLoop for {ind.label}</h3>
             <span className="font-mono text-[11px] text-muted-foreground">Example configuration</span>
           </div>
           <Panel className="p-5">
@@ -75,7 +76,8 @@ const STAGES = [
 
 export function Journey() {
   const [s, setS] = useState(0);
-  const st = STAGES[s]!;
+  const st = STAGES[s] ?? STAGES[0];
+  if (!st) return null;
   return (
     <Section className="border-y border-border bg-surface" labelledBy="journey-title">
       <SectionHeader id="journey-title" eyebrow="Customer journey" title={<>Every step, <Serif>honestly</Serif> measured.</>} body="Select a stage to see what ClientLoop records—and what it doesn't claim to know." align="center" />
@@ -84,12 +86,12 @@ export function Journey() {
           {STAGES.map((x, i) => (
             <li key={x.label} className="relative">
               {i < STAGES.length - 1 && <span className={cn("absolute left-1/2 top-5 h-px w-full", i < s ? "bg-primary" : "bg-border")} aria-hidden="true" />}
-              <button onClick={() => setS(i)} aria-pressed={i === s} aria-label={x.label} className="relative z-10 mx-auto flex flex-col items-center gap-2">
+              <Button variant="ghost" onClick={() => setS(i)} aria-pressed={i === s} aria-label={x.label} className="relative z-10 mx-auto flex h-auto max-w-full flex-col items-center gap-2 whitespace-normal p-0 hover:bg-transparent">
                 <span className={cn("grid h-10 w-10 place-items-center rounded-full border transition-all", i === s ? "border-primary bg-primary text-primary-foreground shadow-button" : i < s ? "border-primary bg-card text-primary" : "border-border bg-card text-muted-foreground")}>
                   <x.icon className="h-4 w-4" />
                 </span>
                 <span className={cn("hidden text-center text-[13px] sm:block", i === s ? "text-foreground" : "text-muted-foreground")}>{x.label}</span>
-              </button>
+              </Button>
             </li>
           ))}
         </ol>
@@ -103,7 +105,7 @@ export function Journey() {
           <div className="rounded-xl border border-border bg-background p-4">
             <SampleTag />
             <dl className="mt-4 divide-y divide-border text-[14px]">
-              {st.detail.map(([k, v]) => <div key={k} className="flex justify-between py-2.5"><dt className="text-muted-foreground">{k}</dt><dd className="font-medium">{v}</dd></div>)}
+              {st.detail.map(([k, v]) => <div key={k} className="grid grid-cols-[minmax(0,1fr)_auto] gap-3 py-2.5"><dt className="text-muted-foreground">{k}</dt><dd className="font-medium">{v}</dd></div>)}
             </dl>
           </div>
         </div>
@@ -122,7 +124,7 @@ export function Trust() {
   ];
   return (
     <Section labelledBy="trust-title">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
         <SectionHeader id="trust-title" eyebrow="Product principles" title={<>Built to be <Serif>trusted</Serif> by your customers, too.</>} />
         <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
           {items.map((x, i) => (
@@ -152,8 +154,8 @@ export function Pricing() {
         {plans.map((p, i) => (
           <Reveal key={p.name} delay={i * 80}>
             <div className={cn("flex h-full flex-col rounded-2xl border p-7", p.featured ? "bg-ink-gradient border-transparent text-ink-foreground shadow-panel" : "border-border bg-card")}>
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium">{p.name}</h3>
+              <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-start gap-2">
+                <h3 className="min-w-0 text-lg font-medium">{p.name}</h3>
                 <span className={cn("rounded-md px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider", p.featured ? "bg-ink-foreground/10" : "bg-secondary text-muted-foreground")}>Early access</span>
               </div>
               <p className={cn("mt-2 text-[14px]", p.featured ? "text-ink-foreground/70" : "text-muted-foreground")}>{p.for}</p>
@@ -184,7 +186,7 @@ const FAQS = [
 export function FAQ() {
   return (
     <Section id="faq" labelledBy="faq-title">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
         <SectionHeader id="faq-title" eyebrow="FAQ" title={<>Questions, <Serif>answered.</Serif></>} />
         <Reveal>
           <Accordion type="single" collapsible className="border-t border-border">
@@ -222,7 +224,7 @@ export function FinalCTA() {
   };
   return (
     <section id="early-access" aria-labelledby="cta-title" className="px-5 pb-24 sm:px-8">
-      <Reveal className="bg-ink-gradient relative mx-auto max-w-6xl overflow-hidden rounded-[28px] px-6 py-16 text-center text-ink-foreground sm:px-12 sm:py-24">
+      <Reveal className="bg-ink-gradient relative page-container overflow-hidden rounded-[28px] px-6 py-16 text-center text-ink-foreground sm:px-12 sm:py-24">
         <h2 id="cta-title" className="display mx-auto max-w-3xl text-[36px] text-balance sm:text-6xl">
           Build stronger customer relationships, <Serif>one visit at a time.</Serif>
         </h2>
@@ -232,7 +234,7 @@ export function FinalCTA() {
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal" />
             <div>
               <p className="font-medium">You're on the list (demo).</p>
-              <p className="mt-1 text-[13px] text-ink-foreground/60">This preview doesn't save sign-ups yet—nothing was sent anywhere. <button className="underline" onClick={() => { setState("idle"); setEmail(""); }}>Try again</button></p>
+              <p className="mt-1 text-[13px] text-ink-foreground/60">This preview doesn't save sign-ups yet—nothing was sent anywhere. <Button variant="ghost" className="h-auto whitespace-normal p-0 text-[13px] underline" onClick={() => { setState("idle"); setEmail(""); }}>Try again</Button></p>
             </div>
           </div>
         ) : (
@@ -250,7 +252,7 @@ export function FinalCTA() {
                 aria-describedby="email-msg"
                 className="h-11 min-w-0 flex-1 rounded-full bg-transparent px-4 text-[15px] text-ink-foreground placeholder:text-ink-foreground/40 focus:outline-none"
               />
-              <Button type="submit" variant="onInk" size="xl" disabled={state === "loading"} className="h-11">
+              <Button type="submit" variant="onInk" size="xl" disabled={state === "loading"} className="h-11 shrink-0">
                 {state === "loading" ? <Loader2 className="animate-spin" /> : <>Get early access <ArrowRight /></>}
               </Button>
             </div>
@@ -268,7 +270,7 @@ export function FinalCTA() {
 export function Footer() {
   return (
     <footer className="border-t border-border px-5 py-14 sm:px-8">
-      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="page-container grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))]">
         <div>
           <Wordmark />
           <p className="mt-4 max-w-xs text-[14px] text-muted-foreground">Customer insights, follow-ups and reviews for service businesses.</p>
@@ -290,7 +292,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto mt-12 flex max-w-6xl flex-wrap justify-between gap-2 border-t border-border pt-6 text-[12px] text-muted-foreground">
+      <div className="page-container mt-12 flex flex-wrap justify-between gap-2 border-t border-border pt-6 text-[12px] text-muted-foreground">
         <p>© {new Date().getFullYear()} ClientLoop. All rights reserved.</p>
         <p>Product previews use illustrative sample data.</p>
       </div>

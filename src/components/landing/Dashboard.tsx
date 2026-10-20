@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, Calendar, LayoutGrid, Users, MessageSquareText, Send, Star, BarChart3, Settings, ArrowUpRight } from "lucide-react";
 import { LoopMark, SampleTag } from "./shared";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const BUSINESSES = ["Northside Studio", "Harbor Bistro", "FixRight Repairs"];
@@ -48,43 +49,43 @@ export function Dashboard() {
           ))}
         </aside>
         <div className="min-w-0 flex-1 p-3 sm:p-5">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="relative">
-              <button
+          <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+            <div className="relative min-w-0">
+              <Button variant="ghost"
                 onClick={() => setMenu((m) => !m)}
                 aria-haspopup="listbox"
                 aria-expanded={menu}
-                className="flex items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1.5 text-[13px] font-medium shadow-soft hover:bg-secondary"
+                className="flex h-auto max-w-full items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1.5 text-[13px] font-medium shadow-soft hover:bg-secondary"
               >
-                <span className="grid h-5 w-5 place-items-center rounded bg-teal-soft text-[10px] font-semibold text-teal">{BUSINESSES[biz]?.[0]}</span>
-                {BUSINESSES[biz]}
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded bg-teal-soft text-[10px] font-semibold text-teal">{BUSINESSES[biz]?.[0]}</span>
+                <span className="min-w-0 truncate">{BUSINESSES[biz]}</span>
                 <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
-              </button>
+              </Button>
               {menu && (
                 <ul role="listbox" className="animate-fade absolute left-0 top-10 z-10 w-52 rounded-xl border border-border bg-popover p-1 shadow-panel">
                   {BUSINESSES.map((b, i) => (
                     <li key={b}>
-                      <button
+                      <Button variant="ghost"
                         role="option"
                         aria-selected={i === biz}
                         onClick={() => { setBiz(i); setMenu(false); }}
                         className={cn("w-full rounded-lg px-2.5 py-2 text-left text-[13px] hover:bg-secondary", i === biz && "bg-accent text-accent-foreground")}
                       >
                         {b}
-                      </button>
+                      </Button>
                     </li>
                   ))}
                 </ul>
               )}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2">
               <SampleTag className="hidden md:inline-flex" />
               <div className="flex items-center rounded-lg border border-border bg-card p-0.5 text-[12px]" role="group" aria-label="Date range">
                 <Calendar className="mx-1.5 h-3.5 w-3.5 text-muted-foreground" />
                 {RANGES.map((r) => (
-                  <button key={r} aria-pressed={range === r} onClick={() => setRange(r)} className={cn("rounded-md px-2 py-1 font-mono", range === r ? "bg-ink text-ink-foreground" : "text-muted-foreground hover:text-foreground")}>
+                  <Button variant="ghost" key={r} aria-pressed={range === r} onClick={() => setRange(r)} className={cn("h-auto rounded-md px-2 py-1 text-[12px] font-mono", range === r ? "bg-ink text-ink-foreground" : "text-muted-foreground hover:text-foreground")}>
                     {r}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -96,7 +97,7 @@ export function Dashboard() {
               { k: "Returning", v: `${d.returning - (biz ? 4 : 0)}%`, delta: "+3.1 pts" },
               { k: "Feedback done", v: `${d.feedback + biz}%`, delta: "+1.4 pts" },
             ].map((m) => (
-              <div key={m.k} className="rounded-xl border border-border bg-card p-2.5 sm:p-3.5">
+              <div key={m.k} className="min-w-0 rounded-xl border border-border bg-card p-2.5 sm:p-3.5">
                 <p className="truncate text-[11px] text-muted-foreground sm:text-xs">{m.k}</p>
                 <p className="mt-1 text-lg font-semibold tracking-tight tabular-nums sm:text-2xl">{m.v}</p>
                 <p className="mt-0.5 flex items-center gap-0.5 text-[10px] text-teal sm:text-[11px]"><ArrowUpRight className="h-3 w-3" />{m.delta}</p>
@@ -104,10 +105,10 @@ export function Dashboard() {
             ))}
           </div>
 
-          <div className="mt-3 grid gap-3 md:grid-cols-5">
-            <div className="rounded-xl border border-border bg-card p-3.5 md:col-span-3">
-              <div className="flex items-center justify-between">
-                <p className="text-[13px] font-medium">Visits · new vs returning</p>
+          <div className="mt-3 grid min-w-0 gap-3 md:grid-cols-5">
+            <div className="min-w-0 rounded-xl border border-border bg-card p-3.5 md:col-span-3">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                <p className="min-w-0 text-[13px] font-medium">Visits · new vs returning</p>
                 <div className="flex gap-3 text-[11px] text-muted-foreground">
                   <span className="flex items-center gap-1"><i className="h-2 w-2 rounded-sm bg-primary" />Returning</span>
                   <span className="flex items-center gap-1"><i className="h-2 w-2 rounded-sm bg-chart-5" />New</span>
@@ -128,7 +129,7 @@ export function Dashboard() {
                 })}
               </div>
             </div>
-            <div className="rounded-xl border border-border bg-card p-3.5 md:col-span-2">
+            <div className="min-w-0 rounded-xl border border-border bg-card p-3.5 md:col-span-2">
               <p className="text-[13px] font-medium">How customers found you</p>
               <div className="mt-3 flex h-2 overflow-hidden rounded-full">
                 {SOURCES.map((s) => <div key={s.label} className={s.color} style={{ width: `${s.pct}%` }} />)}
@@ -144,8 +145,8 @@ export function Dashboard() {
             </div>
           </div>
 
-          <div className="mt-3 grid gap-3 md:grid-cols-5">
-            <div className="hidden rounded-xl border border-border bg-card p-3.5 md:col-span-2 md:block">
+          <div className="mt-3 grid min-w-0 gap-3 md:grid-cols-5">
+            <div className="hidden min-w-0 rounded-xl border border-border bg-card p-3.5 md:col-span-2 md:block">
               <p className="text-[13px] font-medium">Popular services</p>
               <ul className="mt-3 space-y-2.5">
                 {[["Signature cut", 82], ["Colour & tone", 61], ["Treatment", 44], ["Consultation", 27]].map(([n, v]) => (
@@ -156,14 +157,14 @@ export function Dashboard() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl border border-border bg-card p-3.5 md:col-span-3">
+            <div className="min-w-0 rounded-xl border border-border bg-card p-3.5 md:col-span-3">
               <p className="text-[13px] font-medium">Recent activity</p>
               <ul className="mt-2 divide-y divide-border">
                 {ACTIVITY.map((a) => (
                   <li key={a.who} className="flex items-center gap-3 py-2">
                     <span className={cn("grid h-7 w-7 shrink-0 place-items-center rounded-full text-[10px] font-semibold", a.tone)}>{a.who.split(" ").map((x) => x[0]).join("")}</span>
                     <span className="min-w-0 flex-1 truncate text-[12.5px]"><b className="font-medium">{a.who}</b> <span className="text-muted-foreground">{a.what}</span></span>
-                    <span className="font-mono text-[11px] text-muted-foreground">{a.when}</span>
+                    <span className="shrink-0 font-mono text-[11px] text-muted-foreground">{a.when}</span>
                   </li>
                 ))}
               </ul>
