@@ -66,7 +66,7 @@ const TABS = [
 function TabVisual({ id }: { id: string }) {
   if (id === "overview")
     return (
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
         {[["Visits this week", "214", "bg-primary", 72], ["Returning rate", "58%", "bg-teal", 58], ["Feedback completed", "41%", "bg-chart-3", 41], ["Follow-ups sent", "36", "bg-amber", 36]].map(([k, v, c, p]) => (
           <div key={k as string} className="rounded-xl border border-border bg-card p-4">
             <p className="text-xs text-muted-foreground">{k}</p>
@@ -78,7 +78,7 @@ function TabVisual({ id }: { id: string }) {
     );
   if (id === "insights")
     return (
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="min-w-0 rounded-xl border border-border bg-card p-4">
         <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 sm:grid-cols-[auto_minmax(0,1fr)_auto]">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cobalt-soft font-semibold text-primary">AO</span>
           <div className="min-w-0">
@@ -100,11 +100,11 @@ function TabVisual({ id }: { id: string }) {
     );
   if (id === "feedback")
     return (
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="min-w-0 rounded-xl border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground">Questionnaire · After visit</p>
         <p className="mt-3 text-[14px] font-medium">How would you rate today's service?</p>
-        <div className="mt-2 flex gap-1.5">
-          {[1, 2, 3, 4, 5].map((n) => <span key={n} className={cn("grid h-9 w-9 place-items-center rounded-lg border text-sm", n === 4 ? "border-primary bg-primary text-primary-foreground" : "border-border")}>{n}</span>)}
+        <div className="mt-2 grid grid-cols-5 gap-1.5">
+          {[1, 2, 3, 4, 5].map((n) => <span key={n} className={cn("grid h-9 w-full max-w-9 place-items-center rounded-lg border text-sm", n === 4 ? "border-primary bg-primary text-primary-foreground" : "border-border")}>{n}</span>)}
         </div>
         <p className="mt-5 text-[14px] font-medium">How did you hear about us?</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -114,8 +114,8 @@ function TabVisual({ id }: { id: string }) {
       </div>
     );
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 rounded-xl border border-border bg-card p-4">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-[13px] font-medium">Follow-up queue</p>
         <span className="font-mono text-[11px] text-muted-foreground">3 ready · 1 skipped</span>
       </div>
@@ -127,7 +127,7 @@ function TabVisual({ id }: { id: string }) {
               <p className="text-[13px] font-medium">{n}</p>
               <p className="truncate text-xs text-muted-foreground">{m}</p>
             </div>
-            <span className={cn("rounded-md px-2 py-0.5 text-[11px]", ok ? "bg-teal-soft text-teal" : "bg-rose-soft text-rose")}>{s}</span>
+            <span className={cn("shrink-0 rounded-md px-2 py-0.5 text-[11px]", ok ? "bg-teal-soft text-teal" : "bg-rose-soft text-rose")}>{s}</span>
           </li>
         ))}
       </ul>
@@ -172,8 +172,8 @@ export function ProductTabs() {
             </Button>
           ))}
         </div>
-        <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} key={t.id} className="animate-fade mt-8 grid min-w-0 items-center gap-6 rounded-3xl border border-border bg-surface p-6 sm:p-8 lg:gap-10 lg:p-10 lg:grid-cols-2">
-          <div>
+        <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} key={t.id} className="animate-fade mt-8 grid min-w-0 grid-cols-1 items-center gap-6 rounded-3xl border border-border bg-surface p-4 sm:p-8 lg:gap-10 lg:p-10 lg:grid-cols-2">
+          <div className="min-w-0">
             <h3 className="display text-3xl sm:text-4xl">{t.title}</h3>
             <p className="mt-4 text-muted-foreground leading-relaxed">{t.body}</p>
             <ul className="mt-6 space-y-2.5">
