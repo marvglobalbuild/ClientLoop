@@ -231,7 +231,7 @@ export function FinalCTA() {
         <p className="mx-auto mt-5 max-w-lg text-ink-foreground/70">Join early access and help shape ClientLoop for businesses like yours.</p>
         {state === "success" ? (
           <div role="status" className="animate-fade mx-auto mt-10 flex max-w-md items-start gap-3 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/5 p-4 text-left">
-            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-chart-2" />
             <div>
               <p className="font-medium">You're on the list (demo).</p>
               <p className="mt-1 text-[13px] text-ink-foreground/60">This preview doesn't save sign-ups yet—nothing was sent anywhere. <Button variant="ghost" className="h-auto whitespace-normal p-0 text-[13px] underline" onClick={() => { setState("idle"); setEmail(""); }}>Try again</Button></p>
@@ -256,7 +256,7 @@ export function FinalCTA() {
                 {state === "loading" ? <Loader2 className="animate-spin" /> : <>Get early access <ArrowRight /></>}
               </Button>
             </div>
-            <p id="email-msg" className={cn("mt-3 flex items-center justify-center gap-1.5 text-[13px]", state === "error" ? "text-rose" : "text-ink-foreground/50")} aria-live="polite">
+            <p id="email-msg" className={cn("mt-3 flex items-center justify-center gap-1.5 text-[13px]", state === "error" ? "text-destructive" : "text-ink-foreground/50")} aria-live="polite">
               {state === "error" ? <><AlertCircle className="h-3.5 w-3.5" />{err}</> : "Demo form — sign-ups aren't stored yet."}
             </p>
           </form>
