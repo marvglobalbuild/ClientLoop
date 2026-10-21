@@ -325,7 +325,7 @@ export function Features() {
         </Reveal>
         <Reveal delay={80} className="lg:col-span-4">
           <div className="bg-ink-gradient h-full rounded-2xl p-6 text-ink-foreground sm:p-8">
-            <Phone className="h-5 w-5 text-teal" />
+            <Phone className="h-5 w-5 text-amber" />
             <h3 className="mt-4 text-xl font-medium tracking-tight">WhatsApp follow-ups, with permission</h3>
             <p className="mt-2 max-w-md text-ink-foreground/70">Message only customers who agreed to hear from you. Opt-outs stop future sends. <span className="text-ink-foreground/50">(Planned — not yet connected.)</span></p>
             <div className="mt-6 flex flex-wrap gap-2 text-[12px]">
