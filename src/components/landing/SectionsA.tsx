@@ -8,27 +8,37 @@ import { cn } from "@/lib/utils";
 /* ---------------- HERO ---------------- */
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-5 pt-9 pb-14 sm:px-8 sm:pt-12 lg:pt-14 lg:pb-16">
+    <section id="top" className="relative overflow-hidden px-5 pt-10 pb-16 sm:px-8 sm:pt-14 lg:pt-20 lg:pb-24">
       <div className="bg-hero pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
-      <div className="relative page-container">
-        <Reveal className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow">Customer relationships, made clearer</p>
-          <h1 className="display mt-6 text-[36px] text-balance sm:text-5xl lg:text-[64px] xl:text-[72px]">
-            Turn every customer interaction into your <Serif>next opportunity.</Serif>
+      <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <div className="relative page-container grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">
+        <Reveal className="max-w-xl">
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-[12px] text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Early access for service businesses
+          </p>
+          <h1 className="display mt-6 text-[38px] text-balance sm:text-5xl lg:text-[56px] xl:text-[64px]">
+            Turn every customer interaction into your <Serif><span className="text-primary">next opportunity.</span></Serif>
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+          <p className="mt-6 text-[17px] leading-relaxed text-muted-foreground text-pretty">
             Understand who comes back, what brings people in, and where to improve—then follow up thoughtfully and grow your reputation from one connected workspace.
           </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="hero" size="xl" className="w-full sm:w-auto"><a href="#early-access">Get early access <ArrowRight /></a></Button>
             <Button asChild variant="soft" size="xl" className="w-full sm:w-auto"><a href="#product">Explore the product</a></Button>
           </div>
-          <p className="mt-6 text-[13px] text-muted-foreground">Built for service businesses of every size.</p>
+          <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-6">
+            {[["1", "connected workspace"], ["0", "spreadsheets needed"], ["100%", "consent-aware"]].map(([v, l]) => (
+              <div key={l} className="min-w-0">
+                <dt className="text-2xl font-semibold tracking-tight">{v}</dt>
+                <dd className="mt-1 text-[12px] text-muted-foreground">{l}</dd>
+              </div>
+            ))}
+          </dl>
         </Reveal>
-        <Reveal delay={150} className="mx-auto mt-10 max-w-6xl lg:mt-12">
-          <Dashboard />
-          <p className="mt-4 text-center text-[12px] text-muted-foreground">Interactive preview with illustrative sample data — try the business selector and date range.</p>
+        <Reveal delay={150} className="relative lg:-mr-10 xl:-mr-16">
+          <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-primary/10 blur-3xl" aria-hidden="true" />
+          <div className="relative"><Dashboard /></div>
+          <p className="mt-4 text-[12px] text-muted-foreground">Interactive preview with illustrative sample data — try the business selector and date range.</p>
         </Reveal>
       </div>
     </section>
