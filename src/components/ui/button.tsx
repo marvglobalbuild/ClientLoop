@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "rounded-full bg-primary text-primary-foreground shadow-button hover:brightness-110 active:translate-y-px transition-all",
+        hero: "rounded-full bg-gradient-to-r from-primary to-amber text-white shadow-button hover:brightness-105 active:translate-y-px transition-all",
         ink: "rounded-full bg-ink text-ink-foreground shadow-soft hover:bg-ink/90 active:translate-y-px transition-all",
         soft: "rounded-full border border-border bg-card text-foreground shadow-soft hover:bg-secondary active:translate-y-px transition-all",
         onInk: "rounded-full bg-ink-foreground text-ink hover:bg-ink-foreground/90 active:translate-y-px transition-all",

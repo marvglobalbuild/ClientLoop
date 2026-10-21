@@ -161,7 +161,7 @@ export function Pricing() {
               <p className={cn("mt-2 text-[14px]", p.featured ? "text-ink-foreground/70" : "text-muted-foreground")}>{p.for}</p>
               <p className="display mt-6 text-4xl">TBA</p>
               <ul className="mt-6 flex-1 space-y-2.5 text-[14px]">
-                {p.items.map((x) => <li key={x} className="flex gap-2.5"><span className={p.featured ? "text-teal" : "text-primary"}>—</span>{x}</li>)}
+                {p.items.map((x) => <li key={x} className="flex gap-2.5"><span className={p.featured ? "text-amber" : "text-primary"}>—</span>{x}</li>)}
               </ul>
               <Button asChild variant={p.featured ? "onInk" : "soft"} size="xl" className="mt-8"><a href="#early-access">Join early access</a></Button>
             </div>
